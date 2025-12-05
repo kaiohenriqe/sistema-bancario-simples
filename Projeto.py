@@ -4,28 +4,20 @@ import random
 
 ARQUIVO = "dados.json"
 
-# ------------------ CARREGAR DADOS ------------------
-
 def carregar_dados():
     if os.path.exists(ARQUIVO):
         with open(ARQUIVO, "r") as f:
             return json.load(f)
     return {"contas": {}}
-
-# ------------------ SALVAR DADOS ------------------
-
+    
 def salvar_dados(dados):
     with open(ARQUIVO, "w") as f:
         json.dump(dados, f, indent=4)
-
-# ------------------ RESETAR SISTEMA ------------------
 
 def resetar_sistema():
     if os.path.exists(ARQUIVO):
         os.remove(ARQUIVO)
     print("\nSistema resetado com sucesso!\n")
-
-# ------------------ CRIAR CONTA ------------------
 
 def criar_conta(dados):
     print("\n--- CRIAR NOVA CONTA ---")
@@ -49,8 +41,6 @@ def criar_conta(dados):
     print(f"Número da conta: {numero_conta}")
     print(f"Saldo inicial: R${saldo_inicial:.2f}\n")
 
-# ------------------ LOGIN ------------------
-
 def login(dados):
     print("\n--- LOGIN DE CONTA ---")
     numero = input("Digite o número da conta: ")
@@ -65,7 +55,6 @@ def login(dados):
     print("\nLogin realizado com sucesso!\n")
     return numero
 
-# ------------------ MENU DA CONTA ------------------
 
 def menu_conta(dados, conta):
     while True:
@@ -100,8 +89,6 @@ def menu_conta(dados, conta):
 
         else:
             print("\nOpção inválida!\n")
-
-# ------------------ FUNÇÕES BANCÁRIAS ------------------
 
 def sacar(dados, conta):
     valor = float(input("\nValor para saque: R$ "))
@@ -146,9 +133,6 @@ def mostrar_extrato(dados, conta):
 
     print(f"\nSaldo atual: R${dados['contas'][conta]['saldo']:.2f}")
     print("----------------------\n")
-
-
-# ------------------ MENU PRINCIPAL ------------------
 
 def main():
     dados = carregar_dados()
